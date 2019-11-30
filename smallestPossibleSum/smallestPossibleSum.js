@@ -28,8 +28,8 @@
 // Additional notes:
 
 // There are performance tests consisted of very big numbers and arrays of size at least 30000. Please write an efficient algorithm to prevent timeout.
-var pgcd = function(a,b) { // i have noticed that the array goes back to the smalest pgcd so i started with making pgcd function
-	if(a === b){
+var pgcd = (a,b) => { // i have noticed that the array goes back to the smalest pgcd so i started with making pgcd function
+	if(a === b) {
 		return a; 
 	}
 	if(a === 0) {
@@ -43,7 +43,9 @@ var pgcd = function(a,b) { // i have noticed that the array goes back to the sma
 var smallestSum = function(numbers) {
 	var truePGCD =  pgcd(numbers[0],numbers[1]) // i asseined the first pgcd as the smallest one aka the true one
 	for(var i = 1; i < numbers.length - 1; i++) { // check if it's really the true one 
-		pgcd(numbers[i],numbers[i+1]) < truePGCD ?  truePGCD = pgcd(numbers[i],numbers[i+1]) : undefined // i'm starting to like es6 lol
+		var currentPGCD = pgcd(numbers[i],numbers[i+1])
+		currentPGCD < truePGCD ?  truePGCD = currentPGCD : undefined // i'm starting to like es6 lol
+		truePGCD === 1 ? i =  numbers.length - 2 : undefined
 	}
-	return numbers.length * truePGCD n// now that all of numbers are the true pcgd we just multiply
+	return numbers.length * truePGCD // now that all of numbers are the true pcgd we just multiply
 }
