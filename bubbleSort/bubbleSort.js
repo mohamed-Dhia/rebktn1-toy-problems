@@ -33,17 +33,15 @@
 // Feel free to add helper functions if needed.
 
 
-var bubbleSort = function(array,arrayLength = array.length - 1,index = 0 ,cnt = 0) {
+var bubbleSort = (array,arrayLength = array.length - 1,index = 0 ,cnt = 0) => {
   // Your code here.
-  	if(index === arrayLength) {
-  		return (cnt === 0) ? array : bubbleSort(array,arrayLength - 1)
-  	}
-  	if (array[index] > array[index + 1]) {
-  		var aux = array[index];
-  		array[index] = array[index + 1];
-  		array[index+1] = aux;
-  	 	cnt++;	
-  	}
-  	index++;
-  	return bubbleSort(array,arrayLength,index++,cnt,);
+  if(index === arrayLength) {
+    return (cnt === 0) ? array : bubbleSort(array,arrayLength - 1)
+  }
+  if (array[index] > array[index + 1]) {
+    [array[index], array[index + 1]] = [array[index + 1], array[index]]
+    cnt++;  
+  }
+  index++;
+  return bubbleSort(array,arrayLength,index++,cnt);
 };

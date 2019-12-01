@@ -40,12 +40,13 @@ var pgcd = (a,b) => { // i have noticed that the array goes back to the smalest 
 	}
 	return pgcd(a-b,b)
 }
-var smallestSum = function(numbers) {
+var smallestSum = (numbers) => {
 	var truePGCD =  pgcd(numbers[0],numbers[1]) // i asseined the first pgcd as the smallest one aka the true one
+	
 	for(var i = 1; i < numbers.length - 1; i++) { // check if it's really the true one 
-		var currentPGCD = pgcd(numbers[i],numbers[i+1])
+		var currentPGCD = pgcd(numbers[i],numbers[i+1]);
 		currentPGCD < truePGCD ?  truePGCD = currentPGCD : undefined // i'm starting to like es6 lol
-		truePGCD === 1 ? i =  numbers.length - 2 : undefined
-	}
-	return numbers.length * truePGCD // now that all of numbers are the true pcgd we just multiply
+		truePGCD === 1 ? i =  numbers.length - 2 : undefined // if the true PGCD is 1 then there's no use of checking the rest therefore by seting i to the last elemnt we quit the loop
+	};
+	return numbers.length * truePGCD; // now that all of numbers are the true pcgd we just multiply
 }

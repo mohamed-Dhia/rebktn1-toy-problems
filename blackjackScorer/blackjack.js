@@ -13,29 +13,29 @@ Examples
 ["A", "10", "A"]                ==>  12
 ["5", "3", "7"]                 ==>  15
 ["5", "4", "3", "2", "A", "K"]  ==>  25 */
-function blackJack (array){
-	var values = {}
-	values.K = 10;
-	values.Q = 10;
-	values.J = 10;
-	values.A = 11
-	function calculate(result){
-		var result = result || 0;
-		for (var i = 0; i < array.length; i++) {
+var blackJack = (hand) => {
+	var aceCount = 0;
+	var result = 0; 
+	
+	for(var card in hand){
+		switch(hand[card]) {
+			case 'K':
+			case 'Q':
+			case 'J':
+				result += 10;
+			break;
 
-			if (!values[array[i]]) {
-				result += Number(array[i])
-			} else {
-				result += values[array[i]]
-			}
-		}
+			case 'A':
+				result += 11;
+				aceCount++;
+			break;
 
-		if (result > 21 && array.includes("A")) {
-			array.splice(array.indexOf("A"),1,1)
-			return calculate()	
-		} else {
-			return result
+			default:
+				result += Number(hand[card])
 		}
 	}
-	return calculate()
-}
+	while(aceCount > 0 && result > 21) {
+		result -= 10
+	}
+	return result;
+} 
