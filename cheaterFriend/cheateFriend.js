@@ -18,25 +18,37 @@
 // Example:
 // removNb(26) should return [ {15, 21}, {21, 15} ]
 // by brute forcr
-var removNb = function (n) {
-	var sum = 0;
-	var result = []
-	
-	for (var i = 0; i <= n; i++) {
-		sum += i
-	}
 
-	for (var i = 0; i <= n; i++) {
-		for (var j = i+1; j <= n; j++){
-			if (i*j === (sum - (i + j))) {
-				result.push([i, j])
-				result.push([j, i])
-			}
+var removNb = (n) => {
+	var sum = 0;
+	var result = [];
+	
+	var summer = (n) => {
+		for(var i = 0; i <= n; i++) {
+			som += i;
+		}
+	    return som;
+	};
+	
+	for(var i = 1; i <= n; i++) {
+		var testSubject = (mySum - i)/(i + 1);
+		if((mySum - i)%(i + 1) === 0 && testSubject < n){
+			result.push([i, testSubject])
 		}
 	}
+	return result;
+}
 
-	// if(result === []){
-	// 	return "nil"
-	// }
-	return result
-} 
+var removNb = (n) => {
+	var result = [];
+	var sum = (n**2 + n)/2;
+	for(var i = 1; i <= n; i++) {
+		var testSubject = (sum - i)/(i + 1);
+		if((sum - i)%(i + 1) === 0 && testSubject < n){
+			result.push([i, testSubject]);
+		}
+	}
+	return result;
+}
+
+
