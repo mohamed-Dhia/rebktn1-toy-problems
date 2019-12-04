@@ -23,36 +23,33 @@
 // Given numbers will be positive.
 
 var factorial = (nb) => {
-	var result = 1
+	var result = 1;
 	for (var i = 1; i <= nb; i++) {
-		result *= i
+		result *= i;
 	}
-	return result
+	return result;
 }
 
-var container = {
-
-}
 var dec2FactString = (nb,number = 36,str = "") => {
-	if (number === 0){
-		return str += "0"
-	}
+	if (number === 0)
+		return str += "0";
 	numberFact = factorial(number)
-	if(nb <= numberFact && !str) {
-		str+= ""
-	}
+	if(nb <= numberFact && !str)
+		str+= "";
 	else {
-		str += (nb - nb%numberFact)/numberFact;
-		nb = nb % numberFact  
+		str += (nb - nb % numberFact)/numberFact;
+		nb = nb % numberFact;  
 	}
 	number--
-	return dec2FactString(nb,number,str)
-} 
-var factString2Dec = (string,result = 0) => {
-	var k = 0
+	return dec2FactString(nb,number,str);
+}
+
+var factString2Dec = (string) => {
+	var result = 0;
+	var k = 0;
 	for (var i = string.length - 1; i >= 0; i--) {
-		result += string[i] * factorial(k)
-		k++
+		result += string[i] * factorial(k);
+		k++;
 	}
 	return result;
 }
