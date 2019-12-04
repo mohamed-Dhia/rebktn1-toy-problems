@@ -6,7 +6,7 @@
 // More generally, the nth-to-last digit is always 0, 1, 2, ..., or n and is in base n!.
 // Example :
 
-// decimal number 463 is coded as "341010": // 6 
+// decimal number 463 is coded as "341010": 
 
 // 463 (base 10) = 3×5! + 4×4! + 1×3! + 0×2! + 1×1! + 0×0!
 
@@ -29,16 +29,22 @@ var factorial = (nb) => {
 	}
 	return result;
 }
-
+var alphabet=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 var dec2FactString = (nb,number = 36,str = "") => {
 	if (number === 0)
 		return str += "0";
-	numberFact = factorial(number)
-	if(nb <= numberFact && !str)
-		str+= "";
+	
+	var numberFact = factorial(number)
+	
+	if (nb <= numberFact && !str)
+		str += "";
 	else {
-		str += (nb - nb % numberFact)/numberFact;
-		nb = nb % numberFact;  
+	var mod = nb % numberFact
+		if(((nb - mod)/numberFact) > 9)
+			str += alphabet[((nb - mod)/numberFact) - 9];
+		else 	
+			str += (nb - mod)/numberFact;
+		nb = mod;  
 	}
 	number--
 	return dec2FactString(nb,number,str);
@@ -48,6 +54,7 @@ var factString2Dec = (string) => {
 	var result = 0;
 	var k = 0;
 	for (var i = string.length - 1; i >= 0; i--) {
+		if(string[i])	
 		result += string[i] * factorial(k);
 		k++;
 	}
