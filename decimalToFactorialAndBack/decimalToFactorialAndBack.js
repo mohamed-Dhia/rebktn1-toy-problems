@@ -41,7 +41,7 @@ var dec2FactString = (nb,number = 36,str = "") => {
 	else {
 	var mod = nb % numberFact
 		if(((nb - mod)/numberFact) > 9)
-			str += alphabet[((nb - mod)/numberFact) - 9];
+			str += alphabet[((nb - mod)/numberFact) - 10];
 		else 	
 			str += (nb - mod)/numberFact;
 		nb = mod;  
@@ -54,7 +54,8 @@ var factString2Dec = (string) => {
 	var result = 0;
 	var k = 0;
 	for (var i = string.length - 1; i >= 0; i--) {
-		if(string[i])	
+		!Number(string[i]) ? 
+			result+= alphabet[]	
 		result += string[i] * factorial(k);
 		k++;
 	}
