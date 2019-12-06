@@ -55,7 +55,7 @@ var factString2Dec = (string) => {
 	var k = 0;
 	for (var i = string.length - 1; i >= 0; i--) {
 		!Number(string[i]) ? 
-			result+= alphabet[]	
+			result+= string[i].charCodeAt(0) - 55	
 		result += string[i] * factorial(k);
 		k++;
 	}
