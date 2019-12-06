@@ -11,7 +11,7 @@
 // If a moved letter becomes 'c', 'o', 'd' or 'e', revert it back to it's original value.
 
 // Provided string will always be lower case, won't be empty and will have no special characters.
-var vowelsBack = function (s) {
+var vowelBack = function (s) {
 	var newString = "";
 	for (var i = 0; i < s.length; i++) {
 		newChar = s.charCodeAt(i);
@@ -21,7 +21,7 @@ var vowelsBack = function (s) {
 			newChar -= 3;
 		else if(s[i] === "e")
 			newChar -= 4;
-		else if(s[i] === "a" || s[i] === "i" || s[i] === "u" ||s[i] === "y")
+		else if(s[i] === "a" || s[i] === "i" || s[i] === "u")
 			newChar -= 5;
 		else 
 			newChar += 9;
