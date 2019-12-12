@@ -41,18 +41,7 @@ function TreeNode(val) {
 	this.val = val;
 	this.left = this.right = null;
 }
-var mergeTrees = function(t1, t2) {
-	var mergeTree = new TreeNode(t1.val + t2.val);
-	if(t1.right || t2.right)
-	 mergeTree.right = new TreeNode(t1.right.val + t2.right.val);
-  if(t1.left || t2.left)
-		mergeTree.left = new TreeNode(t1.left.val + t2.left.val);
-	// if(t1.right.left || t1.right.right ||t2.right.left || t2.right.right )
-	// 	mergeTree.right = mergeTrees(t1.right,t2.right);
-	// if(t1.left.left || t1.left.right ||t2.left.left || t2.left.right )
-	// 	mergeTree.left = mergeTrees(t1.left,t2.left);
-  return mergeTree;
-};
+
 var mergeTrees = function(t1, t2) {
 	var mergeTree = new TreeNode((t1 ? t1.val : 0) + (t2 ? t2.val : 0));
 	if((t1 ? t1.right : null) || (t2 ? t2.right : null))
@@ -61,3 +50,12 @@ var mergeTrees = function(t1, t2) {
 		mergeTree.left = mergeTrees(t1.left,t2.left)
 	return mergeTree;
 };
+var mergeTrees = function(t1, t2) { //this one looks better but adds a tree with the value od 0  when merging 2 unexisting trees
+	var mergeTree = new TreeNode((t1 ? t1.val : 0) + (t2 ? t2.val : 0));
+	if((t1 ? t1.right : null) || (t2 ? t2.right : null) || (t1 ? t1.left : null) || (t2 ? t2.left : null)){
+		mergeTree.right = mergeTrees(t1.right,t2.right)
+		mergeTree.left = mergeTrees(t1.left,t2.left)
+	}
+	return mergeTree;
+};
+
