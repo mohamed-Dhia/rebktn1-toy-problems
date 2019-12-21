@@ -43,7 +43,7 @@ var Range = function (start, end, step) {
     if (!start) return;
     this.start = start
     !end ? this.end = start : this.end = end
-    !step ? this.start > this.end ? this.step = -1 : this.step = 1 : this.step = step
+    !step ? this.start > this.end ? this.step = -1 : this.step = 1  : this.start > this.end ? this.step = -step :this.step = step
 };
 
 Range.prototype.size = function () {
@@ -58,23 +58,23 @@ Range.prototype.size = function () {
     //     }
     // }
     // return counter;
-    return Math.abs((this.start - this.end) / this.step) + 1
+    return Math.abs((this.start - this.end) / this.step) + 1; //smart way
 };
 
 Range.prototype.each = function (callback) {
     if (this.step < 0) {
         for (var i = this.start; i >= this.end; i += this.step) {
-            callback(i)
+            callback(i);
         }
     } else {
         for (var i = this.start; i <= this.end; i += this.step) {
-            callback(i)
+            callback(i);
         }
     }
 };
 
 Range.prototype.includes = function (val) {
-    var state = false
+    var state = false;
     this.each((value) => {
         if (val === value)
             state = true;
