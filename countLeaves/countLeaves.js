@@ -37,7 +37,16 @@ var Tree = function(value) {
 /**
  * You shouldn't need to change anything below here, but feel free to look.
  */
-
+Tree.prototype.countLeaves = function(leaves = 0) {
+  if (!this instanceof Tree) {
+    return "that's not a tree";
+  }
+  if (!this.children.length) leaves++;
+  this.children.forEach(subTree => {
+    leaves = subTree.countLeaves(leaves);
+  });
+  return leaves;
+};
 /**
  * add an immediate child
  * (wrap values in Tree nodes if they're not already)
@@ -50,7 +59,7 @@ Tree.prototype.addChild = function(child) {
   if (!this.isDescendant(child)) {
     this.children.push(child);
   } else {
-    throw new Error('That child is already a child of this tree');
+    throw new Error("That child is already a child of this tree");
   }
   // return the new child node for convenience
   return child;
@@ -84,6 +93,6 @@ Tree.prototype.removeChild = function(child) {
     // remove the child
     this.children.splice(index, 1);
   } else {
-    throw new Error('That node is not an immediate child of this tree');
+    throw new Error("That node is not an immediate child of this tree");
   }
 };
