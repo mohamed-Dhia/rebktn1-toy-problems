@@ -25,4 +25,25 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var insertionSortList = function(head) {};
+
+var loop = (resHead, ele) => {
+  if (ele.val < resHead.val && ele.val > resHead.next.val) {
+    ele.next = resHead.next;
+    resHead.next = ele;
+    return resHead;
+  }
+  return loop(head.next, ele);
+};
+var insertionSortList = function(head, res = null) {
+  if (!res) res = { val: head.val, next: null };
+  if (!head.next) return res;
+  if (head.val < res.val) {
+    res = {
+      val: head.val,
+      next: res
+    };
+  } else {
+    res = loop(res, head);
+  }
+  return insertionSortList(head.next, res);
+};
