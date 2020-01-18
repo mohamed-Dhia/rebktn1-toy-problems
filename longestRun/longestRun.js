@@ -12,6 +12,7 @@ longestRun("abcdefgh") // [ 0, 0 ]
 longestRun("abccccccc") // [ 2, 8 ]
 */
 
+<<<<<<< HEAD
 longestRun = string => {
   var mem = {};
   counter = 1;
@@ -48,3 +49,8 @@ longestRun = string => {
 
   return res;
 };
+=======
+
+
+
+>>>>>>> 26958188a2074d88c523cd902b4e19b8f6d513e6
