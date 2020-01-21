@@ -12,47 +12,67 @@ numberToEnglish(78193512) // "seventy-eight million one hundred ninety-three tho
 // HELPERS
 
 var numbersToWords = {
-  0: 'zero',
-  1: 'one',
-  2: 'two',
-  3: 'three',
-  4: 'four',
-  5: 'five',
-  6: 'six',
-  7: 'seven',
-  8: 'eight',
-  9: 'nine',
-  10: 'ten',
-  11: 'eleven',
-  12: 'twelve',
-  13: 'thirteen',
-  14: 'fourteen',
-  15: 'fifteen',
-  16: 'sixteen',
-  17: 'seventeen',
-  18: 'eighteen',
-  19: 'nineteen',
-  20: 'twenty',
-  30: 'thirty',
-  40: 'forty',
-  50: 'fifty',
-  60: 'sixty',
-  70: 'seventy',
-  80: 'eighty',
-  90: 'ninety'
+  0: "zero",
+  1: "one",
+  2: "two",
+  3: "three",
+  4: "four",
+  5: "five",
+  6: "six",
+  7: "seven",
+  8: "eight",
+  9: "nine",
+  10: "ten",
+  11: "eleven",
+  12: "twelve",
+  13: "thirteen",
+  14: "fourteen",
+  15: "fifteen",
+  16: "sixteen",
+  17: "seventeen",
+  18: "eighteen",
+  19: "nineteen",
+  20: "twenty",
+  30: "thirty",
+  40: "forty",
+  50: "fifty",
+  60: "sixty",
+  70: "seventy",
+  80: "eighty",
+  90: "ninety"
 };
 
 var numbersToPlace = {
-  10: 'ten',
-  100: 'hundred',
-  1000: 'thousand',
-  1000000: 'million',
-  1000000000: 'billion',
-  1000000000000: 'trillion',
-  1000000000000000: 'quadrillion',
-  1000000000000000000: 'quintillion'
+  10: "ten",
+  100: "hundred",
+  1000: "thousand",
+  1000000: "million",
+  1000000000: "billion",
+  1000000000000: "trillion",
+  1000000000000000: "quadrillion",
+  1000000000000000000: "quintillion"
 };
 
-function numberToEnglish(number) {
+function numberToEnglish(number, res = "") {
   // your code here...
+  // if ((number+"").length === 0)
+  //   return;
+  if ((number + "").length <= 2) {
+    if ((number + "")[0] == 1 || (number + "").length === 1) {
+      res += numbersToWords[number];
+    } else {
+      if ((number + "")[1] == 0) {
+        res += `${numbersToWords[(number + "")[0] + 0]}`;
+      } else {
+        res += `${numbersToWords[(number + "")[0] + 0]}-${
+          numbersToWords[(number + "")[1]]
+        }`;
+      }
+    }
+  } else {
+    res += `${numbersToWords[(number + "")[0]]} ${
+      numbersToPlace["1" + "0".repeat((number + "").length - 1)]
+    } `;
+  }
+  return res;
 }
