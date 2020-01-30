@@ -24,7 +24,19 @@ function Node (val) {
   obj.next = null; 
   return obj;
 }
-​
-var reverseLinkedList = function(linkedList) {
+
+var countLinkedList = (linkedList,counter = 0) => {
+  //condition for empty obj
+  return !linkedList.next ? counter + 1 : countLinkedList(linkedList.next, counter + 1) 
+}
+
+var reverseLinkedList = function(linkedList, NewNodeHead = {},counter = 0, size = countLinkedList(linkedList)) {
   // your code here...
+  while(counter <= size){  //A => B => C
+    bucket = bucket.next  ?? linkedList.next  // bucket = B 
+    holder = NewNodeHead 
+    NewNodeHead = Node(bucket.next.value)  
+    NewNodeHead.next = Node(bucket.value)  // new = B => A
+    counter++ 
+  }
 };

@@ -14,10 +14,25 @@ Example:
 
 powerSet("a") // [ "", "a" ]
 powerSet("ab") // [ "", "a", "ab", "b" ]
-powerSet("obama") // [ "", "a", "ab", "abm", "abmo", "abo", "am", "amo", "ao", "b", "bm", "bmo", "bo", "m", "mo", "o" ]
+powerSet("obama") //   [ 'a', 'b', 'm', 'o' ]  [ "", "a", "ab", "abm", "abmo", "abo", "am", "amo", "ao", "b", "bm", "bmo", "bo", "m", "mo", "o" ]
 powerSet("horse") // [ "", "e", "eh", "eho", "ehor", "ehors", "ehos", "ehr", "ehrs", "ehs", "eo", "eor", "eors", "eos", "er", "ers", "es", "h", "ho", "hor", "hors", "hos", "hr", "hrs", "hs", "o", "or", "ors", "os", "r", "rs", "s" ]
 */
-
 function powerSet(string) {
   // your code here...
+  string
+    .split("")
+    .sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0))
+    .filter((ele, index, arr) => {
+      if (!index) {
+        return ele;
+      } else if (arr[index - 1] !== ele) {
+        return ele;
+      }
+    });
+  string.forEach(element => {});
 }
+
+const looper = (arr, res = [""]) => {
+  arr = res.concat(arr);
+  arr.forEach(ele => {});
+};

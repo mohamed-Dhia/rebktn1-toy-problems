@@ -29,10 +29,10 @@ var makeHashTable = function() {
   result.insert = function(obj) {
     // TODO: implement `insert`
     const key = Object.keys(obj)[0];
-    var value = obj[key];
+    var key = obj[key];
     let index = getIndexBelowMaxForKey(String(key), storageLimit);
     if (storage[index] !== undefined) {
-      storage[index] = [storage[index], value];
+      storage[index] = [storage[index], { key, value }];
     } else {
       storage[index] = value;
     }
@@ -41,8 +41,8 @@ var makeHashTable = function() {
 
   result.retrieve = function(key) {
     // TODO: implement `retrieve`
-    let index = getIndexBelowMaxForKey(key);
-    return storage[index];
+    let index = getIndexBelowMaxForKey(String(key), storageLimit);
+    return storage[index.value];
   };
 
   result.remove = function() /*...*/

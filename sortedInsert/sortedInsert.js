@@ -15,8 +15,7 @@ You can also use count to view how many elements are in the stack.
 The stack implementation is available to view below.
 */
 
-// the stack class is exposed here for reference, you may or may not utilize additional stacks in your algorithm.
-
+// the stack class is exposed here for reference, you may or may not utilize additional stacks in your algorithm.var Stack = function(initialValue) {
 var Stack = function(initialValue) {
   this.store = {};
   this.count = 0;
@@ -45,7 +44,27 @@ Stack.prototype.pop = function() {
     return tmp;
   }
 };
+Stack.prototype.findPosition = function(ele, start = 1, end = this.count) {
+  if (this.isEmpty()) return this.push(ele);
+  let middle = Math.floor((start + end) / 2);
+  ele < this.store[start]
+    ? this.insert(ele, start)
+    : ele > this.store[end]
+    ? this.insert(ele, end + 1)
+    : end - start === 1
+    ? this.insert(ele, end)
+    : ele > this.store[middle]
+    ? this.findPosition(ele, middle, end)
+    : this.findPosition(ele, start, middle);
+};
 
+Stack.prototype.insert = function(ele, index) {
+  !this.store[index]
+    ? ((this.store[index] = ele), this.count++)
+    : (tmp = this.store[index]),
+    (this.store[index] = ele),
+    this.insert(tmp, index + 1);
+};
 function sortedInsert(stack, element) {
   // your code here...
 }
