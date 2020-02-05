@@ -13,14 +13,15 @@ const isPrime = (n, counter = 2) => {
   return isPrime(n, counter + (n % counter));
 };
 
-function sumOfPrimes(n) {
-  // your code here...
-  var sum = 0;
-  for (var i = 0; i <= n; i++) {
-    if (isPrime(i)) {
-      console.log(i);
-      sum += i;
-    }
+const sumOfPrimes = (n, sum = 0, curr = 2) => {
+  if (n < 0) {
+    console.log("enter a positif number ➕, 😠");
+    return;
   }
-  return sum;
-}
+  if (n <= 1) {
+    return "0️⃣";
+  }
+  if (isPrime(curr)) sum += curr;
+  if (curr >= n) return sum;
+  return sumOfPrimes(n, sum, curr + 1);
+};
