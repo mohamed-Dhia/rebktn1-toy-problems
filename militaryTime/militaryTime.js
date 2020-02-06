@@ -11,5 +11,16 @@ toMilitary("04:00") // "04:00"
 */
 
 function toMilitary(time) {
-  // your code here...
+  time = time.split(":");
+  if (time[1][2] === "p" && time[0].slice(0, 2) !== "12") {
+    time[0] = Number(time[0]) + 12;
+  } else if (time[1][2] === "a") {
+    if (time[0] === "12") {
+      time[0] = "00";
+    } else if (time[0].length < 2) {
+      time[0] = "0" + time[0];
+    }
+  }
+  time[1] = time[1].slice(0, 2);
+  return time.join(":");
 }
