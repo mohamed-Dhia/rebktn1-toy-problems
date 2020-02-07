@@ -7,7 +7,7 @@ Explanation: An input of [3,0,3] can be visualized as such:
 |  |//|  |
 |  |//|  |
 |  |//|  |
-‾‾‾‾‾‾‾‾‾‾
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 The area of water in the above picture (and the result of calling volume([3,0,3])) is 3.
 
 Challenge: do this in O(n) with < 2 pass-throughs
@@ -20,4 +20,20 @@ volume([1,2,3,2,1]) // 0
 
 function volume(heights) {
   // your code here...
+  temp = 0;
+  heights.forEach((bulding, buldingNumber, buldingHeights) => {
+    if (
+      buldingHeights[buldingNumber + 1] - bulding > 0 &&
+      buldingHeights[buldingNumber - 1] - bulding > 0
+    ) {
+      newtemp = Math.min(
+        (buldingHeights[buldingNumber + 1] - bulding,
+        buldingHeights[buldingNumber - 1] - bulding)
+      );
+      if (newtemp > temp) {
+        temp = newtemp;
+      }
+    }
+  });
+  return temp;
 }
