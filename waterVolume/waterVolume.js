@@ -30,9 +30,7 @@ function volume(heights) {
         (buldingHeights[buldingNumber + 1] - bulding,
         buldingHeights[buldingNumber - 1] - bulding)
       );
-      if (newtemp > temp) {
-        temp = newtemp;
-      }
+      temp = newtemp > temp ? newtemp : temp;
     }
   });
   return temp;
