@@ -69,7 +69,10 @@ Mergesort is an optimized sorting algorithm which is a common choice to implemen
 Array.prototype.sort = function() {
   console.log("please don't use the native sort function!");
 };
-
 function mergeSort(arr) {
-  // your code here...
+  // your code here.
+  if (!Array.isArray(arr[0])) arr = arr.map(ele => [ele]);
+  for(let i = 0 ; i <= arr.length ; i+2) {
+    if(arr[i]< )
+  }  
 }

@@ -14,17 +14,51 @@ Caveats:
   • It is not necessary to write a way to remove listeners.
 */
 
-var mixEvents = function (obj) {
+var mixEvents = function(obj) {
+  // your code here...
+  var events = {};
+
+  obj.trigger = function(event) {
     // your code here...
-    var events = {};
+    console.log("args", [...arguments]);
+    for (let event of [...arguments]) {
+      for (let evento of events[event]) {
+        evento();
+      }
+    }
+    // console.log(`triggered all ${events[event].length} events`);
+    console.log(`triggered all events`);
+  };
 
-    obj.trigger = function (event) {
-        // your code here...
-    };
-
-    // Register a callback to be fired on this event.
-    obj.on = function (event, callback) {
-        // your code here...
-    };
-    return obj;
+  // Register a callback to be fired on this event.
+  obj.on = function(event, callback) {
+    // your code here...
+    if (!events[event]) {
+      events[event] = [];
+    }
+    events[event].push(callback);
+    console.log(`${event} was registered as an event`);
+  };
+  return obj;
 };
+
+var obj = mixEvents({ name: "Alice", age: 30 });
+
+obj.on("ageChange", function() {
+  obj.age++;
+  console.log("Age changed");
+});
+
+obj.on("ageChange", function() {
+  obj.age++;
+  console.log("Age changed");
+});
+
+obj.on("ageChange2", function() {
+  obj.age += 2;
+  console.log("Age changed2");
+});
+
+obj.trigger("ageChange", "ageChange2");
+
+console.log(obj);
