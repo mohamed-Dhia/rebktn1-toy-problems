@@ -13,7 +13,8 @@ Quicksort uses these steps.
   3. All elements less than the pivot must be in the first partition.
   4. All elements greater than the pivot must be in the second partition.
   5. Recursively apply the above process to the two partitions
-  6. Join the first sorted partition, the pivot, and the second sorted partition.
+  6. Join the first sorted partition, the pivot, an
+  d the second sorted partition.
 
 The best pivot creates partitions of equal length (or lengths differing by 1). 
 The worst pivot creates an empty partition (for example, if the pivot is the first or last element of a sorted array).
@@ -25,4 +26,16 @@ NOTE: DO NOT use JavaScript’s built-in sorting function (Array.prototype.sort)
 
 function quickSort(arr) {
   // your code here...
+  let pivot = Math.floor(arr.length / 2);
+  let leftParttion = arr.slice(0, pivot);
+  let rightParttion = arr.slice(pivot);
+  console.log(leftParttion, rightParttion);
+  if (leftParttion.length > 1) quickSort(leftParttion);
+  if (rightParttion.length > 1) quickSort(rightParttion);
+  if (leftParttion.length === 1 && rightParttion.length === 1) {
+    return [
+      Math.max(leftParttion[0], rightParttion[0]),
+      Math.min(leftParttion[0], rightParttion[0])
+    ];
+  }
 }
