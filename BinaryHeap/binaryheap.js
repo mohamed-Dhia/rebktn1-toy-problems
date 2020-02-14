@@ -23,19 +23,19 @@
 
 // You can see a great visualization of a binary min heap in action here, play around with it until you can easily guess how the heap will behave with both insertion and removal: https://www.cs.usfca.edu/~galles/visualization/Heap.html
 
-
 function BinaryHeap() {
-    this._heap = [];
-    // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
-    this._compare = function (i, j) { return i < j };
+  this._heap = [];
+  // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
+  this._compare = function(i, j) {
+    return i < j;
+  };
 }
 // This function works just fine and shouldn't be modified
-BinaryHeap.prototype.getRoot = function () {
-}
-BinaryHeap.prototype.insert = function (value) {
-    // TODO: Your code here
-
-}
-BinaryHeap.prototype.removeRoot = function () {
-    // TODO: Your code here
-}
+BinaryHeap.prototype.getRoot = function() {};
+BinaryHeap.prototype.insert = function(value) {
+  // TODO: Your code here
+  //starts with adding the number ...
+};
+BinaryHeap.prototype.removeRoot = function() {
+  // TODO: Your code here
+};
