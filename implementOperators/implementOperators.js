@@ -11,14 +11,6 @@ EXAMPLES:
   modulo(5, 2) // 1
 */
 
-var multiply = function(x, y) {
-  // your code here...
-};
-
-var divide = function(x, y) {
-  // your code here...
-};
-
-var modulo = function(x, y) {
-  // your code here...
-};
+var multiply = (x, y, c = x) => (y === 1 ? x : multiply(x + c, y - 1, c));
+var divide = (x, y, c = 0) => (x < y ? c : divide(x - y, y, c + 1));
+var modulo = (x, y) => (x < y ? x : modulo(x - y, y));
