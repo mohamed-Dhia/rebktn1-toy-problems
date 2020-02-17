@@ -8,20 +8,31 @@ The queue should not have any storage separate from its stacks.
 var Stack = function() {
   var storage = [];
 
-  this.push = function() {};
+  this.push = element => {
+    storage.push(element);
+    return storage;
+  };
 
-  this.pop = function() {};
+  this.pop = () => storage.pop();
 
-  this.size = function() {};
+  this.size = () => storage.length;
 };
 
 var Queue = function() {
   var inbox = new Stack();
   var outbox = new Stack();
 
-  this.enqueue = function() {};
+  this.enqueue = element => {
+    inbox.push(element);
+    return `${element} is added`;
+  };
 
-  this.dequeue = function() {};
+  this.dequeue = () => {
+    if (!outbox.size()) {
+      while (inbox.size()) outbox.push(inbox.pop());
+    }
+    return outbox.pop();
+  };
 
-  this.size = function() {};
+  this.size = () => inbox.size() + outbox.size();
 };
