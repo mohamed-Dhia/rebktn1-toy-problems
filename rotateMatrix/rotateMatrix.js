@@ -34,4 +34,23 @@ This usually matches the way arrays are addressed in code, but keep in mind that
 
 function rotateMatrix(matrix) {
   // your code here...
+  var res = [];
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (i === 0) {
+        if (!res[i]) res[i] = [];
+        res[i][j + 1] = matrix[i][j];
+      }
+      if (j === matrix[i].length - 1) {
+        if (!res[i + 1]) res[i + 1] = [];
+        res[i + 1][j] = matrix[i][j];
+      }
+      if (i === matrix.length && j === 0) {
+        // if(!res[i-1])
+        //     res[i-1] = []
+        res[i - 1][j] = matrix[i][j];
+      }
+    }
+  }
+  return res;
 }

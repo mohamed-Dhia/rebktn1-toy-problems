@@ -45,11 +45,7 @@ const findBiggest = objOfWords => {
 const nestedWordCount = words =>
   findBiggest(countNestedWords(addCountToWords(words)));
 
-const addCountToWords = array => {
-  return array.map(ele => [ele, 0]);
-};
-
-const compareNestedWord = (word1, word2) => new RegExp(word2, "g").test(word1); //returns true only if word1 contains word2
+const addCountToWords = array => array.map(ele => [ele, 0]);
 
 const countNestedWords = arrayOfWords => {
   arrayOfWords.forEach((target, indexOfTarget) => {
@@ -61,6 +57,9 @@ const countNestedWords = arrayOfWords => {
   });
   return arrayOfWords;
 };
+
+const compareNestedWord = (word1, word2) => new RegExp(word2, "g").test(word1); //returns true only if word1 contains word2
+
 const findBiggest = (arrayOfWords, max = 0, biggest = "") => {
   arrayOfWords.forEach(ele => {
     if (ele[1] > max) (max = ele[1]), (biggest = ele[0]);
