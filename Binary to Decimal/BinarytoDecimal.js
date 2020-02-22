@@ -1,4 +1,4 @@
-// Given a number n (represented as a binary number string), convert n to base 10. Do NOT use parseInt(n, 2). 
+// Given a number n (represented as a binary number string), convert n to base 10. Do NOT use parseInt(n, 2).
 // You may use the parseInt function that takes in just one argument.
 
 // Examples
@@ -11,10 +11,9 @@
 // n:"101"	 5
 // n:"110"	 6
 // n:"111"	 7
-// n:"1000"	 8 
+// n:"1000"	 8
 
-
-
-function binaryToDecimal (n) {
-// code gose here 
-}
+const binaryToDecimalRec = (n, result = 0) =>
+  n.length
+    ? binaryToDecimalRec(n.slice(1), result + 2 ** (n.length - 1) * n[0])
+    : result;
